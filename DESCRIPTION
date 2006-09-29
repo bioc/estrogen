@@ -1,6 +1,6 @@
 Package: estrogen
 Title: 2x2 factorial design exercise for the Bioconductor short course
-Version: 1.7.0
+Version: 1.8.0
 Date: 2006-06-06
 Author: Wolfgang Huber, Robert Gentleman
 Description: Data from 8 Affymetrix genechips, looking at a 2x2 factorial design (with 2 repeats per level)
