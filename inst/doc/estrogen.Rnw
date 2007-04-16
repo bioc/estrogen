@@ -58,7 +58,7 @@ your own data, you need to preprare a similar file with the appropriate
 information on your arrays and samples.
 To load it into a \code{phenoData} object
 <<loadpdata>>=
-pd = read.phenoData("estrogen.txt", header=TRUE, row.names=1)
+pd = read.AnnotatedDataFrame("estrogen.txt", header=TRUE, row.names=1)
 pData(pd)
 @
 \code{phenoData} objects are where the Bioconductor stores information about 
