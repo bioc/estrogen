@@ -130,7 +130,7 @@ probe set summaries for the same arrays between different methods.
 
 <<normmeth>>=
 normalize.methods(a)
-express.summary.stat.methods
+express.summary.stat.methods()
 @
 \end{exercise}
 
