@@ -1,5 +1,5 @@
 %\VignetteIndexEntry{estrogen}
-%\VignetteDepends{Biobase,affy}
+%\VignetteDepends{Biobase, affy, vsn, genefilter, hgu95av2.db}
 %\VignetteKeywords{Expression Analysis}
 %\VignettePackage{}
 
@@ -344,8 +344,8 @@ affyids <- colnames(eff)
 Let's bring up the mapping from the vendor's probe set identifier to 
 gene names.
 <<gn>>=
-library(hgu95av2) 
-ls("package:hgu95av2")
+library(hgu95av2.db) 
+ls("package:hgu95av2.db")
 @
 
 Let's now first look at the {\bf estrogen main effect}, and print the
