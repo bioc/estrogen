@@ -20,7 +20,7 @@ example}
 %%--------------------Ex.1------------------------------ 
 \item {\bf Preliminaries.}  
 To go through this exercise, you need to have installed R>=1.9.0, the
-libraries \Rpack{Biobase}, \Rpack{affy}, \Rpack{hgu95av2},
+libraries \Rpack{Biobase}, \Rpack{affy}, \Rpack{hgu95av2.db},
 \Rpack{hgu95av2cdf}, and \Rpack{vsn} from the Bioconductor release 1.4.
 
 <<cwd,echo=FALSE,results=hide>>=
