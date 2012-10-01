@@ -1,6 +1,6 @@
 Package: estrogen
 Title: 2x2 factorial design exercise for the Bioconductor short course
-Version: 1.8.8
+Version: 1.8.9
 Date: 2006-06-06
 Author: Wolfgang Huber, Robert Gentleman
 Maintainer: R. Gentleman <rgentlem@hsph.harvard.edu>
