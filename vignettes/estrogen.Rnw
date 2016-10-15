@@ -236,7 +236,7 @@ boxplot(data.frame(exprs(x)), col="blue")
 @
 <<boxplotb,fig=TRUE,include=FALSE,eval=TRUE,results=hide,echo=FALSE>>==
 par(mfrow=c(1,2))
-colnames(exprs(a)) = colnames(exprs(x)) = paste(1:8)
+colnames(exprs(a)) = colnames(x) = as.character(1:8)
 boxplot(a,col="red")
 boxplot(data.frame(exprs(x)), col="blue")
 par(mfrow=c(1,1))
