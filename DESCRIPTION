@@ -1,12 +1,11 @@
 Package: estrogen
 Title: 2x2 factorial design exercise for the Bioconductor short course
-Version: 1.19.0
+Version: 1.19.1
 Date: 2006-06-06
 Author: Wolfgang Huber, Robert Gentleman
 Maintainer: R. Gentleman <rgentlem@hsph.harvard.edu>
-Description: Data from 8 Affymetrix genechips, looking at a 2x2 factorial design (with 2 repeats per level)
+Description: Data from 8 Affymetrix genechips, looking at a 2x2
+    factorial design (with 2 repeats per level).
 biocViews: ExperimentData, MicroarrayData
 License: LGPL
-Depends: R (>= 1.9.0), affy (>= 1.4)
-Suggests: Biobase (>= 1.13.16), affy, vsn, hgu95av2.db, genefilter
-Packaged: Thu Jun  8 20:06:13 2006; vcarey
+Suggests: affy, hgu95av2, hgu95av2cdf, vsn
