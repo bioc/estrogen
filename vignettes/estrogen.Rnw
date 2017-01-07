@@ -1,7 +1,5 @@
 %\VignetteIndexEntry{estrogen}
-%\VignetteDepends{Biobase, affy, vsn, genefilter, hgu95av2.db}
-%\VignetteKeywords{Expression Analysis}
-%\VignettePackage{}
+%\VignetteEngine{knitr::knitr} 
 
 \documentclass[a4paper]{article}
 \usepackage{bioCexercises}
@@ -21,11 +19,11 @@ To go through this exercise, you need to have installed R, the
 packages \Rpack{Biobase}, \Rpack{affy}, \Rpack{hgu95av2.db},
 \Rpack{hgu95av2cdf} and \Rpack{vsn}.
 
-<<cwd,echo=FALSE,results=hide>>=
+<<cwd,echo=FALSE,results='hide'>>=
 cwd <- getwd()
 @
 
-<<libraries,echo=TRUE,results=hide>>=
+<<pkgs, results = 'hide', message = FALSE, warning = FALSE>>=
 library("affy")
 library("estrogen")
 library("vsn")
@@ -72,7 +70,7 @@ the row names.
 \item Load the data from the CEL files as well as the phenotypic data 
 into an \code{AffyBatch} object. 
 
-<<a.read,results=hide>>=
+<<a.read,results='hide'>>=
 a <- ReadAffy(filenames = datadir(rownames(pData(pd))), 
               phenoData = pd,
               verbose = TRUE)
@@ -83,10 +81,10 @@ a
 
 \end{exercise}
 
-\begin{figure}[h]
+\begin{figure}[t]
 \begin{center}	
-  \includegraphics[width=0.49\textwidth]{estrogen-image1}
-  \includegraphics[width=0.49\textwidth]{estrogen-image2}
+  \includegraphics[width=0.49\textwidth]{figure/image1-1}
+  \includegraphics[width=0.49\textwidth]{figure/image2-1}
   \caption{\label{estrogen-image} see Exercise 4.}
  \end{center}
 \end{figure}
@@ -95,7 +93,7 @@ a
 \item {\bf Normalization.}  
 Now we can use the function \func{vsnrma} to normalize the
 data and calculate expression values. 
-<<x.calc, results=hide>>=
+<<x.calc, results='hide'>>=
 x <- vsnrma(a)
 @
 <<x.show>>=
@@ -111,34 +109,23 @@ quality control. Fortunately, all of the 8 celfiles that we have
 just loaded do not show any remarkable spatial artifacts 
 (see Fig.~\ref{estrogen-image}).
 %
-<<images1a,eval=FALSE>>=
+<<image1, dev = "png", include = FALSE>>=
 image(a[, 1])
-@
-<<images1b,eval=TRUE,results=hide,echo=FALSE>>=
-jpeg("estrogen-image1.jpg", quality = 100)
-image(a[, 1])
-dev.off()
 @
 %
 But we have another example:
 %
-<<images2a,eval=FALSE>>=
-badc <- ReadAffy("bad.cel")
+<<image2, dev = "png", include = FALSE>>=
+badc <- ReadAffy(filenames = datadir("bad.cel"))
 image(badc)
-@
-<<images2b,eval=FALSE,echo=FALSE,results=hide>>=
-jpeg("estrogen-image2.jpg", quality = 100)
-badc <- ReadAffy("bad.cel")
-image(badc)
-dev.off()
 @
 %
 Note that in these images, row 1 is at the bottom, and row 640 
 at the top.
 
-\begin{figure}[h]
+\begin{figure}[t]
 \begin{center}	
-  \includegraphics[width=0.49\textwidth]{estrogen-hist}
+  \includegraphics[width=0.49\textwidth]{figure/hist-1}
   \caption{\label{estrogen-hist} see Exercise 5.}
  \end{center}
 \end{figure}
@@ -151,38 +138,32 @@ Because of the large dynamical range ($O(10^4)$), it is
 useful to look at the log-transformed values
 (see Fig.~\ref{estrogen-hist}):
 %
-<<hist,fig=TRUE,include=FALSE,width=5,height=5>>=
+<<hist, include = FALSE, fig.width = 5, fig.height = 5>>=
 hist(log2(intensity(a[, 4])), breaks=100, col="blue")
 @
 %
-\begin{figure}[h]
+\begin{figure}[t]
 \begin{center}	
-  \includegraphics[width=0.8\textwidth]{estrogen-boxplotb}
+  \includegraphics[width=0.4\textwidth]{figure/boxplots-1}
+  \includegraphics[width=0.4\textwidth]{figure/boxplots-2}
   \caption{\label{estrogen-boxplot} see Exercise 6.}
  \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[t]
 \begin{center}	
-  \includegraphics[width=0.49\textwidth]{estrogen-scp1}
-  \includegraphics[width=0.49\textwidth]{estrogen-scp2} \\
-  \includegraphics[width=0.49\textwidth]{estrogen-scp3}
-  \includegraphics[width=0.49\textwidth]{estrogen-scp4}
+  \includegraphics[width=0.49\textwidth]{figure/scp-1}
+  \includegraphics[width=0.49\textwidth]{figure/scp-2} \\
+  \includegraphics[width=0.49\textwidth]{figure/scp-3}
+  \includegraphics[width=0.49\textwidth]{figure/scp-4}
   \caption{\label{estrogen-scp} see Exercise 7.}
  \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[t]
 \begin{center}	
-  \includegraphics[width=0.8\textwidth]{estrogen-heatmap}
+  \includegraphics[width=0.8\textwidth]{figure/heatmap-1}
   \caption{\label{estrogen-heatmap} see Exercise 8.}
- \end{center}
-\end{figure}
-
-\begin{figure}[h]
-\begin{center}	
-  \includegraphics[width=\textwidth]{estrogen-eff-show}
-  \caption{\label{estrogen-eff} see Exercise 9.}
  \end{center}
 \end{figure}
 
@@ -193,15 +174,9 @@ we can look at the boxplots, both of the raw intensities
 \code{a} and the normalized probe set values \code{x}
 (see Fig.~\ref{estrogen-boxplot}):
 %
-<<boxplota,eval=FALSE>>=
+<<boxplots, include = FALSE, fig.width = 4, fig.height = 5>>=
 boxplot(a,col="red")
 boxplot(data.frame(exprs(x)), col="blue")
-@
-<<boxplotb,fig=TRUE,include=FALSE,eval=TRUE,results=hide,echo=FALSE>>=
-par(mfrow=c(1,2))
-boxplot(a,col="red")
-boxplot(data.frame(exprs(x)), col="blue")
-par(mfrow=c(1,1))
 @
 %
 In the commands above, note the different syntax: \code{a} is an 
@@ -225,22 +200,11 @@ only, the mismatch probes only, and of course also at the
 normalized, probe-set-summarized data:
 (see Fig.~\ref{estrogen-scp}):
 %
-<<scp-plots,eval=FALSE,echo=FALSE,results=hide>>=
-jpeg("estrogen-scp1.jpg", quality=100)
+<<scp, include = FALSE, results='hide', fig.width = 6, fig.height = 6, dev = "png", dpi = 180>>=
 plot(exprs(a)[, 1:2], log="xy", pch=".", main="all")
-dev.off()
-
-jpeg("estrogen-scp2.jpg", quality=100)
 plot(pm(a)[, 1:2], log="xy", pch=".", main="pm")
-dev.off()
-
-jpeg("estrogen-scp3.jpg", quality=100)
 plot(mm(a)[, 1:2], log="xy", pch=".", main="mm")
-dev.off()
-
-jpeg("estrogen-scp4.jpg", quality=100)
 plot(exprs(x)[, 1:2], pch=".", main="x")
-dev.off()
 @
 %
 Why are the arrays that were made at $t=48$h much brighter than those at
@@ -249,13 +213,6 @@ chips at 10h and at48h to see whether you can find any evidence of saturation,
 changes in experimental protocol, or other quality problems. Distinguish
 between probes that are supposed to represent genes (you can access these
 e.g. through the functions \code{pm()}) and control probes.
-
-<<scp,eval=FALSE>>=
-plot(exprs(a)[,1:2], log="xy", pch=".", main="all")
-plot(pm(a)[, 1:2], log="xy", pch=".", main="pm")
-plot(mm(a)[, 1:2], log="xy", pch=".", main="mm")
-plot(exprs(x)[, 1:2], pch=".", main="x")
-@
 
 %%----------Ex.8----------
 \item {\bf Heatmap.}  
@@ -266,13 +223,8 @@ across chips. (see Fig.~\ref{estrogen-heatmap}):
 rsd <- rowSds(exprs(x))
 sel <- order(rsd, decreasing=TRUE)[1:50] 
 @ 
-<<heatmapb,eval=FALSE>>=
-heatmap(exprs(x)[sel,], col=gentlecol(256))
-@
-<<heatmapc,results=hide,echo=FALSE,eval=FALSE>>=
-jpeg("estrogen-heatmap.jpg", quality = 100)
-heatmap(exprs(x)[sel,], col=gentlecol(256))
-dev.off()
+<<heatmap, include = FALSE, fig.width = 6, fig.height = 6, dev = "png", dpi = 180>>=
+heatmap(exprs(x)[sel, ], col = gentlecol(256))
 @
 
 %%----------Ex.9----------
@@ -314,12 +266,8 @@ Let's now first look at the {\bf estrogen main effect}, and print the
 top 3 genes with largest effect in one direction, as well as in the
 other direction. Then, look at the {\bf estrogen:time interaction}.
 
-<<eff-show,fig=TRUE,include=FALSE,width=8,height=5,echo=FALSE,results=hide>>=
-par(mfrow=c(1,1))
+<<eff-show, fig.width = 5, fig.height = 4>>=
 hist(eff[2,], breaks=100, col="blue", main="estrogen main effect")
-@
-%
-<<eff>>=
 lowest <- sort(eff[2,], decreasing=FALSE)[1:3]
 mget(names(lowest), hgu95av2GENENAME)
 
