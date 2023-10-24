@@ -1,6 +1,6 @@
 Package: estrogen
 Title: Microarray dataset that can be used as example for 2x2 factorial designs 
-Version: 1.48.0
+Version: 1.49.0
 Author: Wolfgang Huber, Robert Gentleman
 Maintainer: Wolfgang Huber <wolfgang.huber@embl.de>
 Description: Data from 8 Affymetrix genechips, looking at a 2x2
